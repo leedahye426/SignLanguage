@@ -15,8 +15,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "memberId")
-    private Long id;
+    private Long memberId;
     private String email;
     private String name;
     private String passwd;
