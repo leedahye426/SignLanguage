@@ -8,25 +8,15 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "sign")
+@Entity(name = "category")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sign {
+public class Category {
 
-    @Id//기본키 지정
+    @Id
     @GeneratedValue
-    private Long singId;
     private Long categoryId;
-    private String word;
-    private String videoName;
-    private String videoPath;
-    private String imgName;
-    private String imgPath;
-    private String content;
-
-
+    private String categoryName;
 }
