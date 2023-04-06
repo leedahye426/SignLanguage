@@ -5,9 +5,10 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { CardMedia } from '@mui/material';
 
 function Sidebar(props) {
-  const { archives, description, social, title } = props;
+  const { archives, description, social, title, image, imageLabel } = props;
 
   return (
     <Grid item xs={12} md={4}>
@@ -16,9 +17,15 @@ function Sidebar(props) {
           {title}
         </Typography>
         <Typography>{description}</Typography>
+        <CardMedia
+            component="img"
+            sx={{ width: 180, display: { xs: 'none', sm: 'block' }}}
+            image={image}
+            alt={imageLabel}
+          />
       </Paper>
       <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-        Archives
+        Category
       </Typography>
       {archives.map((archive) => (
         <Link display="block" variant="body1" href={archive.url} key={archive.title}>

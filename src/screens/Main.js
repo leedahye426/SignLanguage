@@ -4,30 +4,24 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Markdown from './Markdown';
+import Camera from './Camera';
+import { ButtonGroup, Button} from '@mui/material';
 
 function Main(props) {
-  const { posts, title } = props;
+  const { title } = props;
 
   return (
-    <Grid
-      item
-      xs={12}
-      md={8}
-      sx={{
-        '& .markdown': {
-          py: 3,
-        },
-      }}
-    >
+    <Grid item xs={12} md={8} >
       <Typography variant="h6" gutterBottom>
         {title}
       </Typography>
-      <Divider />
-      {posts.map((post) => (
-        <Markdown className="markdown" key={post.substring(0, 40)}>
-          {post}
-        </Markdown>
-      ))}
+      <Divider component="div" role="presentation"/>
+      <ButtonGroup variant="text" aria-label="text button group">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+      <Camera/>
     </Grid>
   );
 }
