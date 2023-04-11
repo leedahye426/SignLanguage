@@ -17,8 +17,15 @@ public class SignService {
         return signRepository.findAll();
     }
 
-
     public List<Sign> findRandomSigns(int limit) {
         return signRepository.findRandomSigns(limit);
+    }
+
+    public List<Sign> findByCategory(Long categoryId) {
+        return signRepository.findByCategory(categoryId);
+    }
+
+    public Sign findSign(Long signId) {
+        return signRepository.findById(signId);
     }
 }

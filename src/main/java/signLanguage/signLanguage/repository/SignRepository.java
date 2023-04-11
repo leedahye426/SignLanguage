@@ -22,9 +22,17 @@ public class SignRepository {
     }
 
     public List<Sign> findRandomSigns(int limit) {
-        return em.createQuery("select s from sign s" +
-                        "order by random()", Sign.class)
+        return em.createQuery("select s from sign s order by random()", Sign.class)
                 .setMaxResults(limit)
                 .getResultList();
     }
+
+    public List<Sign> findByCategory(Long categoryId) {
+        return em.createQuery("select s from sign s where s.categoryId = :categoryId")
+                .setParameter("categoryId", categoryId)
+                .getResultList();
+
+    }
+
+
 }
