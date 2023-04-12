@@ -11,7 +11,7 @@ function Sidebar(props) {
   const { archives, description, social, title, image, imageLabel } = props;
 
   return (
-    <Grid item xs={12} md={4}>
+    <Grid item xs={12} md={3}>
       <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200' }}>
         <Typography variant="h6" gutterBottom>
           {title}
