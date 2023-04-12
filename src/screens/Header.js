@@ -40,7 +40,7 @@ function Header(props) {
           Sign up
         </Button>
       </Toolbar>
-      </ThemeProvider>
+    </ThemeProvider>
       <Toolbar
         component="nav"
         variant="dense"

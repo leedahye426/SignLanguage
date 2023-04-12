@@ -3,14 +3,12 @@ import Grid from '@mui/material/Grid';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
 
 
-const posts = [post1, post2, post3];
+const posts = ['Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo여기까지 quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.'];
 
 const sidebar = {
   title: '수형 설명',
@@ -23,33 +21,24 @@ const sidebar = {
     { title: 'February', url: '#' },
     { title: 'January', url: '#' },
     { title: 'November', url: '#' },
-    { title: 'October', url: '#' },
-    { title: 'September 1999', url: '#' },
-    { title: 'August 1999', url: '#' },
-    { title: 'July 1999', url: '#' },
-    { title: 'June 1999', url: '#' },
-    { title: 'May 1999', url: '#' },
-    { title: 'April 1999', url: '#' },
   ],
   social: [
     { name: 'GitHub', icon: GitHubIcon },
-    { name: 'Twitter', icon: TwitterIcon },
-    { name: 'Facebook', icon: FacebookIcon },
   ],
 };
 
 const Learn = () => {
   return (
-    <Grid container spacing={5} sx={{ mt: 3 }}>
-            <Main title="카테고리별 학습하기"/>
-            <Sidebar
-              title={sidebar.title}
-              description={sidebar.description}
-              image={sidebar.image}
-              imageLabel={sidebar.imageLabel}
-              archives={sidebar.archives}
-              social={sidebar.social}
-            />
+    <Grid container spacing={5} sx={{ mt: 4 }}>
+      <Main title="카테고리별 학습하기" posts={posts}/>
+      <Sidebar
+        title={sidebar.title}
+        description={sidebar.description}
+        image={sidebar.image}
+        imageLabel={sidebar.imageLabel}
+        archives={sidebar.archives}
+        social={sidebar.social}
+      />
     </Grid>
   );
 };
