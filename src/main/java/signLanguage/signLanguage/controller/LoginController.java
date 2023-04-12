@@ -45,10 +45,10 @@ public class LoginController {
 
     }
 
-    @PostMapping("/members/logout")
-    public String logout(HttpSession session) {
-        // 로그아웃 시 세션 삭제
-        session.invalidate();
-        return "redirect:/";
-    }
+//    @PostMapping("/members/logout")
+//    public String logout(HttpSession session) {
+//        // 로그아웃 시 세션 삭제
+//        session.invalidate();
+//        return "redirect:/";
+//    }
 }
