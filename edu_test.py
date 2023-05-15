@@ -30,9 +30,9 @@ action_seq = []
 
 def output_label():
     
-    IMAGE_FILES = ['canvas.png']
+    IMAGE_FILES = ['canvas2.png']
 
-    img = cv2.imread('canvas.png')
+    img = cv2.imread('canvas2.png')
     if img is None:
         return "fail"
     img = cv2.flip(img, 1)
