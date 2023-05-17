@@ -3,12 +3,15 @@ import Grid from '@mui/material/Grid';
 import Main from './Main';
 import Sidebar from './Sidebar';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
 
+const word = ['Learn'];
+const words = {
+  words1 : '졸업',
+  words2 : '안녕',
+  words3 : '학교',
+}
 
-const posts = ['Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo여기까지 quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.'];
+const posts = ['이 장에서는 카테고리별로 새로운 수어를 학습할 수 있습니다. 학습할 때 오른쪽 카메라를 켜고 왼쪽 강의와 사이드에 수형설명을 참고해 따라해 보세요! 자세가 틀렸다면 실시간으로 자세를 교정할 수 있도록 문구가 뜹니다. 이 사항들을 참고해서 재밌게 학습을 진행해 보아요 ~ '];
 
 const sidebar = {
   title: '수형 설명',
@@ -29,8 +32,8 @@ const sidebar = {
 
 const Learn = () => {
   return (
-    <Grid container spacing={5} sx={{ mt: 4 }}>
-      <Main title="카테고리별 학습하기" posts={posts}/>
+    <Grid container spacing={1} sx={{ mt: 4 }}>
+      <Main title="카테고리별 학습하기" posts={posts} word={word} word1={words.words1} word2={words.words2} word3={words.words3}/>
       <Sidebar
         title={sidebar.title}
         description={sidebar.description}

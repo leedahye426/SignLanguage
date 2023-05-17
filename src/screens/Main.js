@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Markdown from './Markdown';
-import Camera from './Camera';
+import MainCamera from './MainCamera';
 import Link from '@mui/material/Link';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Container } from '@mui/system';
@@ -18,7 +18,7 @@ const theme = createTheme({
 
 
 function Main(props) {
-  const { posts, title } = props;
+  const { posts, title, word, word1, word2, word3} = props;
 
   return (
     <Grid container xs={12} md={9} >
@@ -27,19 +27,19 @@ function Main(props) {
         {title}
       </Typography>
       </ThemeProvider>
-      {posts}
+      <Typography theme = {theme} variant="h6">{posts}</Typography>
       <Divider component="div" role="presentation"/>
       <Container role="presentation" sx={{paddingTop : '20px'}}>
         <Breadcrumbs aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">
-            MUI
+            {word1}
           </Link>
           <Link
             underline="hover"
             color="inherit"
             href="/"
           >
-            Core
+            {word2}
           </Link>
           <Link
             underline="hover"
@@ -47,15 +47,15 @@ function Main(props) {
             href="/"
             aria-current="page"
           >
-            Breadcrumbs
+            {word3}
           </Link>
         </Breadcrumbs>
       </Container>
       <Grid item>
-        <Camera/>
+      <MainCamera/>
       </Grid>
       <Divider orientation="vertical" flexItem>
-        VERTICAL
+        {word}
       </Divider>
       <Grid item></Grid>
     </Grid>
