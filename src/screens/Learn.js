@@ -20,8 +20,8 @@ const sidebar = {
   image : 'img/hi.png',
   imageLabel: 'Image Text',
     archives: [
-    { title: 'March', url: '/:1' },
-    { title: 'February', url: '#' },
+    { title: 'March', url: '/learn/1' },
+    { title: 'February', url: '/learn/2' },
     { title: 'January', url: '#' },
     { title: 'November', url: '#' },
   ],
@@ -33,7 +33,7 @@ const sidebar = {
 const Learn = () => {
   return (
     <Grid container spacing={1} sx={{ mt: 4 }}>
-      <Main title="카테고리별 학습하기" posts={posts} word={word} word1={words.words1} word2={words.words2} word3={words.words3}/>
+      <Main title="카테고리별 학습하기" posts={posts} word={word} word1={words.words1} word2={words.words2} word3={words.words3} />
       <Sidebar
         title={sidebar.title}
         description={sidebar.description}

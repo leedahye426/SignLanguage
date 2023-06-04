@@ -54,10 +54,16 @@ function Main(props) {
       <Grid item>
       <MainCamera/>
       </Grid>
+      
       <Divider orientation="vertical" flexItem>
         {word}
       </Divider>
-      <Grid item></Grid>
+
+      <Grid item >
+      <video controls style={{ width: '17%', height: 'auto', position: 'absolute', left: '43%', bottom:'10%' }}>
+        <source src={process.env.PUBLIC_URL + '/videos/turnOn.mp4'} type="video/mp4" />
+      </video>
+      </Grid>
     </Grid>
   );
 }

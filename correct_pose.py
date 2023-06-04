@@ -43,7 +43,7 @@ def calculateAngle(landmark1, landmark2, landmark3):
 def correctPose(current_angles1, word):
 
     # 현재 학습하고 있는 단어의 알맞는 동작의 각도들이 저장되어 있는 배열을 로드
-    angle_path = 'C:/Users/204897/Desktop/SignLanguage/SignLanguage-ai_model/angles' + word
+    angle_path = 'C:/Users/204897/Desktop/SignLanguage/angles/' + word
     correct_angles_np = np.loadtxt(angle_path, dtype=int)
 
     # 로드한 배열을 리스트로 변환
@@ -84,7 +84,7 @@ def correct_poses(word):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image.flags.writeable = False
 
-        results = mediapipeHolistic.process(image)
+        results = mediapipeHolistic.process(image=image)
 
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)

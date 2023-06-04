@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'; 
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -14,11 +14,7 @@ const translate = {
 }
 
 const sidebar = {
-    title: '[수형 설명]',
-    description:
-      '두 주먹을 쥐고 바닥이 아래로 향하게 하여 가슴 앞에서 아래로 내린다.',
-    image : 'img/hi.png',
-    imageLabel: 'Image Text',
+    title: 'start'
   };
 
 const theme = createTheme({
@@ -27,7 +23,9 @@ const theme = createTheme({
     }
   })
 
-const Learn = () => {
+const Translate = () => {
+  const [sidebarTitle, setSidebarTitle] = useState(sidebar.title);
+  
   return (
     <Grid container sx={{ mt: 4 }}>
       <ThemeProvider theme={theme}>
@@ -37,29 +35,22 @@ const Learn = () => {
       </ThemeProvider>
       <Typography theme = {theme} variant="h6">{translate.posts}</Typography>
       <Container sx={{paddingTop : '20px'}}/>
-
-      <Grid item ><AiCamera/></Grid>
-      <Divider orientation="vertical" flexItem>
-        {translate.word}
-      </Divider>
-      <Grid item>
-      <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200', marginTop : '30px', paddingBottom : '20px', paddingLeft:'25px'}}>
-      <Typography variant="h6" gutterBottom>
-          {sidebar.title}
+      <Grid container flexItem sx={{justifyContent:'center'}}>
+        <Grid item ><AiCamera setSidebarTitle={setSidebarTitle} sidebarTitle={sidebarTitle} /></Grid>
+        <Divider orientation="vertical" flexItem sx={{margin:'0 30px 0'}}>
+          {translate.word}
+        </Divider>
+        <Grid item>
+        <Paper elevation={0} sx={{ p: 2, width: '500px', bgcolor: 'grey.200', marginTop : '160px', paddingLeft:'25px'}}>
+        <Typography variant="h6" gutterBottom>
+          {sidebarTitle}
         </Typography>
-        <Typography>{sidebar.description}</Typography>
-        <CardMedia
-            component="img"
-            sx={{ width: 200, display: { xs: 'none', sm: 'block'}, ml:18}}
-            image={sidebar.image}
-            alt={sidebar.imageLabel}
-          />
-      </Paper>
+        </Paper>
+        </Grid>
       </Grid>
-      
     </Grid>
     
   );
 };
 
-export default Learn;
+export default Translate;
