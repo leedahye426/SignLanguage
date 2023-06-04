@@ -20,7 +20,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class MemberService  {
+public class MemberService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
 

@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "sign")
+@Entity(name = "sign")
+@Table
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +19,7 @@ public class Sign {
 
     @Id//기본키 지정
     @GeneratedValue
-    private Long singId;
+    private Long signId;
     private Long categoryId;
     private String word;
     private String videoName;

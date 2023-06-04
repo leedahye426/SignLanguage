@@ -1,0 +1,15 @@
+.outer-container{
+    border: 1px solid #333;
+    border-radius: 50px;
+    height: 25px;
+}
+
+.inner-container{   
+    height: 100%;
+    background: linear-gradient(to right, #fff, rgb(107, 165, 107));
+    border-radius: inherit;
+    width: var(--width);
+    text-align: center;
+    color:#fff;
+    transition: width .5s ease;
+} 

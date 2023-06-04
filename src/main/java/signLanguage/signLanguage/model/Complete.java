@@ -1,18 +1,22 @@
 package signLanguage.signLanguage.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "complete")
+import javax.persistence.*;
+
+@Entity(name = "complete")
+@Table
+@Getter @Setter
 public class Complete {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COMPLETE_SEQ")
+    @SequenceGenerator(name = "COMPLETE_SEQ", sequenceName = "COMPLETE_SEQ", allocationSize = 1)
     private Long num;
     private Long memberId;
-    private Long singId;
+    private Long signId;
+    private Long categoryId;
+
 
 }

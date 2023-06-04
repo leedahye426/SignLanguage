@@ -26,29 +26,37 @@ public class LoginController {
 //        return "member/login";
 //    }
 
-    @PostMapping("/members/login")
-    public ResponseEntity<String> login(@RequestBody Member member, HttpServletRequest request) {
+    @PostMapping("/api/login")
+    public ResponseEntity<?> login(@RequestBody Member member, HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("email : " + member.getEmail());
         System.out.println("passwd : " + member.getPasswd());
         //로그인 로직
         Member loginMember = memberService.login(member.getEmail(), member.getPasswd());
+        System.out.println("loginMember : " + loginMember);
 
-        if(loginMember == null) {
+        if (loginMember == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("잘못된 이메일 혹은 비밀번호를 입력하였습니다.");
         } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("loginMember", loginMember);
-            return ResponseEntity.ok("로그인 성공");
+            HttpSession session = request.getSession(true);
+            session.setAttribute("memberId", loginMember.getMemberId());
+            Cookie sessionCookie = new Cookie("sessionId", session.getId());
+            sessionCookie.setMaxAge(3600);
+            response.addCookie(sessionCookie);
+            System.out.println("sessionID : " + session.getId());
+//            response.setHeader("Session-ID", session.getId());
+            return ResponseEntity.ok().body(session.getId());
         }
 
 
     }
 
-//    @PostMapping("/members/logout")
-//    public String logout(HttpSession session) {
-//        // 로그아웃 시 세션 삭제
-//        session.invalidate();
-//        return "redirect:/";
-//    }
+    @PostMapping("/api/logout")
+    public String logout(HttpSession session) {
+        // 로그아웃 시 세션 삭제
+        session.invalidate();
+        return "redirect:/";
+    }
+
+
 }

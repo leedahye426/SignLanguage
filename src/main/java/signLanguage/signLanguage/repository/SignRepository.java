@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import signLanguage.signLanguage.model.Sign;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -22,10 +23,16 @@ public class SignRepository {
     }
 
     public List<Sign> findRandomSigns(int limit) {
-        return em.createQuery("select s from sign s order by random()", Sign.class)
+        return em.createQuery("select s from sign s order by dbms_random.value()", Sign.class)
                 .setMaxResults(limit)
                 .getResultList();
     }
+//    public List<Sign> findRandomSigns(int limit) {
+//        String jpql = "SELECT s FROM sign s ORDER BY DBMS_RANDOM.VALUE()";
+//        TypedQuery<Sign> query = em.createQuery(jpql, Sign.class);
+//        query.setMaxResults(limit);
+//        return query.getResultList();
+//    }
 
     public List<Sign> findByCategory(Long categoryId) {
         return em.createQuery("select s from sign s where s.categoryId = :categoryId")

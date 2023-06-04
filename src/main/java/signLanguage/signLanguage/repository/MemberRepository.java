@@ -27,6 +27,7 @@ public class MemberRepository  {
     public Member findByEmail(String email) {
         try {
             return em.createQuery("select m from member m where m.email = :email", Member.class)
+                    .setParameter("email", email)
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;

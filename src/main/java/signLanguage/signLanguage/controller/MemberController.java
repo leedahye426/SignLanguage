@@ -7,8 +7,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import signLanguage.signLanguage.model.Category;
 import signLanguage.signLanguage.model.Member;
+import signLanguage.signLanguage.model.Sign;
+import signLanguage.signLanguage.service.CategoryService;
 import signLanguage.signLanguage.service.MemberService;
+import signLanguage.signLanguage.service.SignService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,20 +25,44 @@ public class MemberController {
 
     private final MemberService memberService;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final CategoryService categoryService;
+    private final SignService signService;
 //    @GetMapping("/members/signupForm")
 //    public String joinForm() {
 //        return "signup";
 //    }
-    @PostMapping("/members/signup")
+    @PostMapping("/api/signup")
     public ResponseEntity<?> join(@RequestBody Member member) { // json -> java 객체
         String rawPasswd = member.getPasswd();
         String encPasswd = passwordEncoder.encode(rawPasswd);
+        System.out.println("회원가입 요청");
+        System.out.println("이름 : " + member.getName());
+        System.out.println("email :" + member.getEmail());
+        System.out.println("passwd : " + rawPasswd);
+        System.out.println("암호화된 passwd : " + encPasswd);
+
         member.setPasswd(encPasswd);
         member.setAuthority("ROLE_USER");
         Member createMember = memberService.join(member);
         System.out.println("회원가입 성공");
         return ResponseEntity.ok(createMember);
 
+    }
+
+    @GetMapping("/api/mypage")
+    public List<Map<String, Object>> mypage() {
+        List<Map<String, Object>> list = new ArrayList<>();
+        List<Category> categories = categoryService.findCategories();
+        for(Category category: categories) {
+            Long id = category.getCategoryId();
+            List<Sign> signs = signService.findByCategory(id);
+            Map<String, Object> map = new HashMap<>();
+            map.put("category", category);
+            map.put("signs",signs);
+            list.add(map);
+        }
+        System.out.println(categories);
+        return list;
     }
 
 
