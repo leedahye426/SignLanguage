@@ -32,7 +32,6 @@ def correct_poses():
         
         return jsonify({'image': encoded_image, 'result': text}) ## -----------------------------##
 
-
 @app.route('/transelate_image',  methods=['POST'])
 def transelate_image():
 
