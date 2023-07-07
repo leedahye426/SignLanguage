@@ -1,0 +1,133 @@
+@startuml
+class signLanguage.signLanguage.controller.LearningController {
+- CategoryService categoryService
+- MemberService memberService
+- SignService signService
+- CompleteRepository completeRepository
++ List<Category> learningPage()
++ List<Sign> category(Long)
++ Sign sign(Long)
++ void learning_complete(Complete)
++ Double learning_progress(Long,Long)
++ ResponseEntity<Map<String,Boolean>> checkDuplicate(Complete)
+}
+class signLanguage.signLanguage.model.Category {
+- Long categoryId
+- String categoryName
+}
+class signLanguage.signLanguage.controller.LoginController {
+- MemberService memberService
+- JdbcTemplate jdbcTemplate
++ ResponseEntity<?> login(Member,HttpServletRequest,HttpServletResponse)
++ String logout(HttpSession)
+}
+class signLanguage.signLanguage.SignLanguageApplication {
++ {static} void main(String[])
+}
+class signLanguage.signLanguage.service.SignService {
+- SignRepository signRepository
++ List<Sign> findSigns()
++ List<Sign> findRandomSigns(int)
++ List<Sign> findByCategory(Long)
++ Sign findSign(Long)
+}
+class signLanguage.signLanguage.WebConfig {
++ void addCorsMappings(CorsRegistry)
+}
+class signLanguage.signLanguage.service.CategoryService {
+- CategoryRepository categoryRepository
++ List<Category> findCategories()
+}
+class signLanguage.signLanguage.controller.MemberController {
+- MemberService memberService
+- BCryptPasswordEncoder passwordEncoder
+- CategoryService categoryService
+- SignService signService
++ ResponseEntity<?> join(Member)
++ List<Map<String,Object>> mypage()
+}
+class signLanguage.signLanguage.repository.CategoryRepository {
+- EntityManager em
++ List<Category> findAll()
+}
+class signLanguage.signLanguage.model.Sign {
+- Long signId
+- Long categoryId
+- String word
+- String videoName
+- String videoPath
+- String imgName
+- String imgPath
+- String content
+}
+class signLanguage.signLanguage.SecurityConfig {
++ SecurityFilterChain filterChain(HttpSecurity)
++ BCryptPasswordEncoder passwordEncoder()
++ void configure(WebSecurity)
+}
+class signLanguage.signLanguage.controller.SessionController {
+- MemberService memberService
++ Object getSession(HttpServletRequest)
++ String GetSessionId(HttpServletRequest)
+}
+class signLanguage.signLanguage.service.MemberService {
+- BCryptPasswordEncoder passwordEncoder
+- MemberRepository memberRepository
++ Member join(Member)
++ Member findMember(long)
++ Member findByEmail(String)
++ List<Member> findMembers()
++ Member login(String,String)
+}
+class signLanguage.signLanguage.model.Complete {
+- Long num
+- Long memberId
+- Long signId
+- Long categoryId
+}
+class signLanguage.signLanguage.repository.CompleteRepository {
+- EntityManager em
++ Long save(Complete)
++ List<Complete> findComplete(Long,Long)
++ Complete checkDuplicate(Long,Long)
+}
+class signLanguage.signLanguage.repository.SignRepository {
+- EntityManager em
++ Sign findById(Long)
++ List<Sign> findAll()
++ List<Sign> findRandomSigns(int)
++ List<Sign> findByCategory(Long)
+}
+class signLanguage.signLanguage.model.Member {
+- Long memberId
+- String email
+- String name
+- String passwd
+- String authority
+}
+class signLanguage.signLanguage.model.Board {
+- Long postId
+- Long memberId
+- String title
+- String content
+- LocalDateTime uploadDate
+- LocalDateTime modifyDate
+}
+class signLanguage.signLanguage.controller.HomeController {
+- SignService signService
+- MemberService memberService
++ List<Sign> home()
+}
+class signLanguage.signLanguage.repository.MemberRepository {
+- EntityManager em
++ Member save(Member)
++ Member findByEmail(String)
++ Member findById(Long)
++ List<Member> findAll()
++ Optional<Object> loginCheck(String,String)
+}
+
+
+org.springframework.web.servlet.config.annotation.WebMvcConfigurer <|.. signLanguage.signLanguage.WebConfig
+java.io.Serializable <|.. signLanguage.signLanguage.model.Member
+@enduml

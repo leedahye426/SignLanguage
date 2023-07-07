@@ -27,12 +27,6 @@ public class SignRepository {
                 .setMaxResults(limit)
                 .getResultList();
     }
-//    public List<Sign> findRandomSigns(int limit) {
-//        String jpql = "SELECT s FROM sign s ORDER BY DBMS_RANDOM.VALUE()";
-//        TypedQuery<Sign> query = em.createQuery(jpql, Sign.class);
-//        query.setMaxResults(limit);
-//        return query.getResultList();
-//    }
 
     public List<Sign> findByCategory(Long categoryId) {
         return em.createQuery("select s from sign s where s.categoryId = :categoryId")

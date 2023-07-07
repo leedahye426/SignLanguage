@@ -55,16 +55,16 @@ def correctPose(current_angles1, word):
     
     # 알맞은 동작의 각도와 현재 캡쳐한 사진 속 동작의 각도를 비교하여 알맞은 교정 문구를 리턴
     if (current_angles[0] < (correct_angles[0] * 0.5)) or (current_angles[0] > (correct_angles[0] * 1.5)) :
-        tmp = "left elbow straight1"
+        tmp = "왼쪽 팔꿈치를 더 펴세요."
         return tmp
-    elif (current_angles[1] < (correct_angles[1] * 0.5)) or (current_angles[1] > (correct_angles[1] * 1.5)):        
-        tmp = "right elbow straight2"
+    elif (current_angles[1] < (correct_angles[1] * 0.5)) or (current_angles[1] > (correct_angles[1] * 1.5)):
+        tmp = "오른쪽 팔꿈치를 더 펴세요."
         return tmp
     elif (current_angles[2] < (correct_angles[2] * 0.5)) or (current_angles[2] > (correct_angles[2] * 1.5)):
-        tmp = "left shoulder straight3"
+        tmp = "왼쪽 겨드랑이를 더 펴세요."
         return tmp
-    elif (current_angles[3] < (correct_angles[3] * 0.5)) or (current_angles[3] > (correct_angles[3] * 1.5)):        
-        tmp = "right shoulder straight4"
+    elif (current_angles[3] < (correct_angles[3] * 0.5)) or (current_angles[3] > (correct_angles[3] * 1.5)):
+        tmp = "오른쪽 겨드랑이를 더 펴세요."
         return tmp
     # 아무런 교정이 필요없다면, 즉, 완벽한 자세라면 자세 교정 문구로 OK를 리턴
     else:

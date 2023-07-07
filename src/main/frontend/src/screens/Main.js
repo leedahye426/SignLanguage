@@ -46,7 +46,7 @@ function Main(props) {
       </Divider>
       <Grid item key={sign?.signId}>
         {sign && sign.videoPath ? (
-            <video controls style={{ width: '17%', height: 'auto', position: 'absolute', left: '43%', bottom: '10%' }}>
+            <video controls style={{ width: '280px', height: 'auto', left: '43%', bottom: '10%' }}>
               {sign.videoPath && <source src={`${process.env.PUBLIC_URL}${sign.videoPath}`} type="video/mp4" />}
             </video>
           ) : (

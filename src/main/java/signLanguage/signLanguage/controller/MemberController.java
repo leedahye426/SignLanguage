@@ -35,16 +35,9 @@ public class MemberController {
     public ResponseEntity<?> join(@RequestBody Member member) { // json -> java 객체
         String rawPasswd = member.getPasswd();
         String encPasswd = passwordEncoder.encode(rawPasswd);
-        System.out.println("회원가입 요청");
-        System.out.println("이름 : " + member.getName());
-        System.out.println("email :" + member.getEmail());
-        System.out.println("passwd : " + rawPasswd);
-        System.out.println("암호화된 passwd : " + encPasswd);
 
         member.setPasswd(encPasswd);
-        member.setAuthority("ROLE_USER");
         Member createMember = memberService.join(member);
-        System.out.println("회원가입 성공");
         return ResponseEntity.ok(createMember);
 
     }

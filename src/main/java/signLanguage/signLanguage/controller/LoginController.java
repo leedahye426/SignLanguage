@@ -44,7 +44,6 @@ public class LoginController {
             sessionCookie.setMaxAge(3600);
             response.addCookie(sessionCookie);
             System.out.println("sessionID : " + session.getId());
-//            response.setHeader("Session-ID", session.getId());
             return ResponseEntity.ok().body(session.getId());
         }
 

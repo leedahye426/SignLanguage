@@ -43,11 +43,13 @@ function AiCamera({setSidebarTitle, sidebarTitle}) {
 					//사진과 단어에 따른 자세 교정 문구를 받아와 화면에 띄워줌
           // Update sidebar title
           console.log(lastWord);
-          setSidebarTitle(prevTitle => prevTitle ? prevTitle  + " " + response.data.result : " " + response.data.result);
-        } catch (error) {
-          console.log(error);
-        }
-      }
+          const newResult = response.data.result;
+              console.log(newResult);
+              setSidebarTitle(newResult);
+          } catch (error) {
+              console.log(error);
+            }
+  }
     };
 
     sendData();

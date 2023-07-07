@@ -42,6 +42,9 @@ const SignIn = ({onLoginSuccess}) => {
           // 에러 처리
           console.log('로그인 실패');
           console.error(error);
+          alert("로그인에 실패하였습니다.");
+          setEmail('');
+          setPassword('');
         });
   };
 
@@ -108,7 +111,7 @@ const SignIn = ({onLoginSuccess}) => {
                 fullWidth
                 name="passwd"
                 label="Password"
-                type="passwd"
+                type="password"
                 id="passwd"
                 autoComplete="current-password"
                 value={passwd}

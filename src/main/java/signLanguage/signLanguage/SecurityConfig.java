@@ -48,7 +48,8 @@ public class SecurityConfig {
 //                .passwordEncoder(passwordEncoder());
 //    }
     @Bean
-    public BCryptPasswordEncoder  passwordEncoder() { // BCryptPasswordEncoder 인코더를 반환하여 비밀번호를 안전하게 저장
+    public BCryptPasswordEncoder  passwordEncoder() {
+        // BCryptPasswordEncoder 인코더를 반환하여 비밀번호를 안전하게 저장
         return new BCryptPasswordEncoder();
     }
 

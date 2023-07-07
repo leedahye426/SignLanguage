@@ -23,9 +23,6 @@ public class SessionController {
 
     @GetMapping("/api/session")
     public Object getSession(HttpServletRequest request) {
-        System.out.println("--------------------");
-        System.out.println("세션 정보 호출 API 실행");
-
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -40,16 +37,14 @@ public class SessionController {
         System.out.println("session.getID() : " + session.getId());
 
         if (session != null) {
-            // 로그인 상태인 경우 로그인 멤버 객체를 응답으로 전송합니다.
+            // 로그인 상태인 경우 로그인 멤버 객체를 응답으로 전송
             Member loginMember = memberService.findMember(memberId);
-
             //필요한 정보를 맵 형태로 응답
             Map<String, Object> userInfo = new HashMap<>();
             userInfo.put("name", loginMember.getName());
             userInfo.put("email", loginMember.getEmail());
             userInfo.put("memberId", memberId);
             System.out.println("UserInfo : " + loginMember);
-
             return userInfo;
         } else {
             // 로그인되지 않은 경우

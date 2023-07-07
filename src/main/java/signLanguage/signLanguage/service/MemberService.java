@@ -25,7 +25,8 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member join(Member member) {
-        Optional<Member> existingMember = Optional.ofNullable(memberRepository.findByEmail(member.getEmail()));
+        Optional<Member> existingMember =
+                Optional.ofNullable(memberRepository.findByEmail(member.getEmail()));
         if (existingMember.isPresent()) {
             throw new RuntimeException("Email already exists");
         }
