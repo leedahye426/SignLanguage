@@ -35,7 +35,7 @@ def output_label():
     img = cv2.imread('canvas2.png')
     if img is None:
         return "fail"
-    ## img = cv2.flip(img, 1)
+    img = cv2.flip(img, 1)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     result = hands.process(img)
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)

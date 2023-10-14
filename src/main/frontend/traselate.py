@@ -7,12 +7,12 @@ import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-actions = ['graduate', 
-           'practice', 
-           'write', 
+actions = ['graduate',
+           'practice',
+           'write',
            'spaghetti',
            'candy',
-           'noodles'] 
+           'noodles']
 
 seq_length = 30
 
@@ -20,9 +20,10 @@ seq_length = 30
 # 대신 카테고리 별로 test 하는 함수를 다르게 짜야 할 것 같긴 함
 def load_model():
     from app import app
-    model_file = os.path.join(app.root_path, 'models', 'model3.h5')
+    model_file = os.path.join(app.root_path, 'models', 'model6.h5')
     model = load_model(model_file)
     return model
+
 # MediaPipe hands model
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
@@ -38,7 +39,7 @@ seq = []
 action_seq = []
 
 def output_label():
-    
+
     IMAGE_FILES = ['canvas2.png']
 
     img = cv2.imread('canvas2.png')
@@ -64,8 +65,8 @@ def output_label():
 
             # Get angle using arcos of dot product
             angle = np.arccos(np.einsum('nt,nt->n',
-                v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18],:], 
-                v[[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19],:])) # [15,]
+                                        v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18],:],
+                                        v[[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19],:])) # [15,]
 
             angle = np.degrees(angle) # Convert radian to degree
 
@@ -80,7 +81,7 @@ def output_label():
 
             input_data = np.expand_dims(np.array(seq[-seq_length:], dtype=np.float32), axis=0)
 
-            #결과가 저장 
+            #결과가 저장
             y_pred = model.predict(input_data).squeeze()
 
             i_pred = int(np.argmax(y_pred))
@@ -95,16 +96,16 @@ def output_label():
             if len(action_seq) < 3:
                 continue
 
-            # 마지막에 같은 동작이 반복되면 액션이 맞다고 판단   
+            # 마지막에 같은 동작이 반복되면 액션이 맞다고 판단
             # Flag 변수로 True/ Flase 따지고
-            # 실제 test 함수에서는 this_action 문자열을 리턴      
+            # 실제 test 함수에서는 this_action 문자열을 리턴
             this_action = '?'
             flag = True
             for i in action_seq[-3:]:
                 if action != i:
                     flag = False
                     break
-            if flag: this_action = action 
+            if flag: this_action = action
             if this_action != '?' :
                 return this_action
             else:

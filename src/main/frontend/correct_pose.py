@@ -43,7 +43,7 @@ def calculateAngle(landmark1, landmark2, landmark3):
 def correctPose(current_angles1, word):
 
     # 현재 학습하고 있는 단어의 알맞는 동작의 각도들이 저장되어 있는 배열을 로드
-    angle_path = 'C:/Users/dlekg/OneDrive/바탕 화면/4-1/캡스톤디자인/Git/SignLanguage/src/main/frontend/angles/' + word
+    angle_path = 'D:/캡스톤 연습/angles/' + word
     correct_angles_np = np.loadtxt(angle_path, dtype=int)
 
     # 로드한 배열을 리스트로 변환
@@ -55,16 +55,16 @@ def correctPose(current_angles1, word):
     
     # 알맞은 동작의 각도와 현재 캡쳐한 사진 속 동작의 각도를 비교하여 알맞은 교정 문구를 리턴
     if (current_angles[0] < (correct_angles[0] * 0.5)) or (current_angles[0] > (correct_angles[0] * 1.5)) :
-        tmp = "왼쪽 팔꿈치를 더 펴세요."
+        tmp = "left elbow straight1"
         return tmp
-    elif (current_angles[1] < (correct_angles[1] * 0.5)) or (current_angles[1] > (correct_angles[1] * 1.5)):
-        tmp = "오른쪽 팔꿈치를 더 펴세요."
+    elif (current_angles[1] < (correct_angles[1] * 0.5)) or (current_angles[1] > (correct_angles[1] * 1.5)):        
+        tmp = "right elbow straight2"
         return tmp
     elif (current_angles[2] < (correct_angles[2] * 0.5)) or (current_angles[2] > (correct_angles[2] * 1.5)):
-        tmp = "왼쪽 겨드랑이를 더 펴세요."
+        tmp = "left shoulder straight3"
         return tmp
-    elif (current_angles[3] < (correct_angles[3] * 0.5)) or (current_angles[3] > (correct_angles[3] * 1.5)):
-        tmp = "오른쪽 겨드랑이를 더 펴세요."
+    elif (current_angles[3] < (correct_angles[3] * 0.5)) or (current_angles[3] > (correct_angles[3] * 1.5)):        
+        tmp = "right shoulder straight4"
         return tmp
     # 아무런 교정이 필요없다면, 즉, 완벽한 자세라면 자세 교정 문구로 OK를 리턴
     else:
@@ -84,7 +84,7 @@ def correct_poses(word):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image.flags.writeable = False
 
-        results = mediapipeHolistic.process(image=image)
+        results = mediapipeHolistic.process(image)
 
         image.flags.writeable = True
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
