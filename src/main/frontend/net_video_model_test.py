@@ -1,11 +1,10 @@
 import cv2
 import mediapipe as mp
 import numpy as np
-# from keras.models import load_model
+from keras.models import load_model
 import os
 import time
 import math
-import traselate
 from chatgpt_api import call_chatgpt_api
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -14,7 +13,7 @@ actions = ['me','you','hand_sign', 'hi', 'everyone']
 seq_length = 30
 
 
-# model = load_model('C:/Users/dlekg/OneDrive/바탕 화면/막학기/캡스톤디자인/Git/SignLanguage/src/main/frontend/models/model6.h5')
+model = load_model('models/model6.h5')
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands

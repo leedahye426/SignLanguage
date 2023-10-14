@@ -2,7 +2,7 @@ import requests
 import openai
 
 def call_chatgpt_api(sentense, system):
-    openai.api_key = "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"
+    openai.api_key = "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"
 
     completion = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo",

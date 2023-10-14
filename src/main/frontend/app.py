@@ -49,12 +49,14 @@ def transelate_image():
 
         if not text:  # 텍스트가 비어있을 경우 "?" 반환
             text = "?"
+        else :
+            print("text :", text)
 
-        text = "짜장면짜장면??짜장면하나주세요주세요?주세요??"
-        system = "당신은 주어지는 문장에서 ?를 제거하고 적절히 띄어쓰기를 추가하고 같은 단어가 반복해서 나오면 중복을 제거하고 문맥이 매끄럽게 조사를 추가하여 문장을 매끄럽게 다듬어서 자연스러운 문장을 출력해주는 시스템입니다."
-        chatgpt_response = call_chatgpt_api(text, system)
 
-    return jsonify({'result': chatgpt_response})
+        # system = "당신은 주어지는 문장에서 ?를 제거하고 적절히 띄어쓰기를 추가하고 같은 단어가 반복해서 나오면 중복을 제거하고 문맥이 매끄럽게 조사를 추가하여 문장을 매끄럽게 다듬고 단어의 순서를 어순에 맞게 적절히 변경하여 자연스러운 문장을 출력해주는 시스템입니다."
+        # chatgpt_response = call_chatgpt_api(text, system)
+
+    return jsonify({'result': text})
 
 @app.route('/test_pose', methods=['POST'])
 def test_pose():

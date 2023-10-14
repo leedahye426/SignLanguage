@@ -18,12 +18,13 @@ seq_length = 30
 
 # 카테고리 별로 모델을 다르게 만들 수 있을 것 같음
 # 대신 카테고리 별로 test 하는 함수를 다르게 짜야 할 것 같긴 함
-def load_model():
-    from app import app
-    model_file = os.path.join(app.root_path, 'models', 'model6.h5')
-    model = load_model(model_file)
-    return model
+# def load_model():
+#     from app import app
+#     model_file = os.path.join(app.root_path, 'models', 'model6.h5')
+#     model = load_model(model_file)
+#     return model
 
+model = load_model('models/model3.h5')
 # MediaPipe hands model
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
