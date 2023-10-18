@@ -11,7 +11,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 actions = ['me','you','hand_sign', 'hi', 'everyone']
 seq_length = 30
 
-model = load_model('D:/캡스톤 연습/models/model5.h5') 
+model = load_model('D:/캡스톤 연습/models/model6.h5')  
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands

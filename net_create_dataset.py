@@ -3,9 +3,23 @@ import mediapipe as mp
 import numpy as np
 import time, os
 import math
+import json
 
-actions = ['me','you','hand_sign', 'hi', 'everyone']
+# json 파일이 있는 폴더의 경로
+folder_path = "json"
 
+actions = []
+
+# 폴더 내의 모든 파일을 가져와서 처리합니다.
+for file_name in os.listdir(folder_path):
+    file_path = os.path.join(folder_path, file_name)
+
+    # JSON 파일인지 확인합니다.
+    if os.path.isfile(file_path) and file_name.endswith('.json'):
+        with open(file_path, 'r', encoding='utf-8') as json_file:
+            data = json.load(json_file)
+            name = data['data'][0]['attributes'][0]['name']
+            actions.append(name)
 
 seq_length = 30 
 secs_for_action = 30
@@ -54,18 +68,21 @@ def calculateAngle(landmark1, landmark2, landmark3):
         
     return angle
 
-video_paths = [
-    'D:/캡스톤 연습/video/test_me.mp4',
-    'D:/캡스톤 연습/video/test_you.mp4',
-    'D:/캡스톤 연습/video/test_handsign.mp4',
-    'D:/캡스톤 연습/video/test_hi.mp4',
-    'D:/캡스톤 연습/video/test_everyone.mp4'
 
-]
+video_folder_path = "aihub_video"  # 비디오 파일이 있는 폴더의 경로
+video_paths = []
+
+# 폴더 내의 모든 파일을 가져와서 처리합니다.
+for file_name in os.listdir(video_folder_path):
+    file_path = os.path.join(video_folder_path, file_name)
+
+    # MP4 파일인지 확인합니다.
+    if os.path.isfile(file_path) and file_name.endswith('.mp4'):
+        video_paths.append(file_path)
 
 
 
-os.makedirs('net_test2', exist_ok=True)
+os.makedirs('net_aihub_test2', exist_ok=True)
 created_time = int(time.time())
 
 for idx, action in enumerate(actions):
@@ -80,8 +97,16 @@ for idx, action in enumerate(actions):
         print(f"Perform the '{action.upper()}' action for {secs_for_action} seconds...")
 
         start_time = time.time()
+        end_time = start_time + secs_for_action
 
-        while time.time() - start_time < secs_for_action:
+        cap.set(cv2.CAP_PROP_POS_MSEC, 1500)
+
+        while time.time() < end_time:
+
+            if time.time() - start_time > 6.5:  # 5초가 지나면 처음부터 재생합니다.
+                cap.set(cv2.CAP_PROP_POS_MSEC, 1500)
+                start_time = time.time()
+        
             ret, img = cap.read()
 
             img = cv2.flip(img, 1)
@@ -144,7 +169,7 @@ for idx, action in enumerate(actions):
 
         data = np.array(data)
         ##print(action, data.shape)
-        np.save(os.path.join('net_test2', f'raw_{action}_{created_time}'), data)
+        np.save(os.path.join('net_aihub_test2', f'raw_{action}_{created_time}'), data)
 
         # Create sequence data
         full_seq_data = []
@@ -153,6 +178,6 @@ for idx, action in enumerate(actions):
 
         full_seq_data = np.array(full_seq_data)
         ##print(action, full_seq_data.shape)
-        np.save(os.path.join('net_test2', f'seq_{action}_{created_time}'), full_seq_data)
+        np.save(os.path.join('net_aihub_test2', f'seq_{action}_{created_time}'), full_seq_data)
 
 cap.release()

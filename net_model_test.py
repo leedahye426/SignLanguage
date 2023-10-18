@@ -5,13 +5,17 @@ from keras.models import load_model
 import os
 import time
 import math
+import json
+# json 파일이 있는 폴더의 경로
+folder_path = "json"
+
+actions = ['drivers license', 'goalkeeper', 'watch', 'filling', 'boxing']
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-actions = ['me','you','hand_sign', 'hi', 'everyone']
 seq_length = 30
 
-model = load_model('D:/캡스톤 연습/models/model6.h5') 
+model = load_model('D:/캡스톤 연습/models/aihub_model2.h5') 
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands
