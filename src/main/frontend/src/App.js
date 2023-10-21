@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Today from './screens/Today';
 import Translate from "./screens/Translate";
 import Mypage from './screens/Mypage';
+import MediaRecorder from "./screens/MediaRecorder";
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
@@ -73,6 +74,7 @@ function App() {
                     <Route path="/SignUp" element = {<SignUp/>} />
                     <Route path="/Test" element = {<Test/>} />
                     <Route path="/Mypage" element = {<Mypage/>} />
+                    <Route path="/Practice" element = {<MediaRecorder/>} />
                 </Routes>
             </Container>
         </Router>

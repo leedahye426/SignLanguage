@@ -5,11 +5,12 @@ from keras.models import load_model
 import os
 import time
 import math
+from collections import Counter
 from chatgpt_api import call_chatgpt_api
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-actions = ['me','you','hand_sign', 'hi', 'everyone']
+actions = ['hi','everyone','me','name', 'apple']
 seq_length = 30
 
 
@@ -136,7 +137,7 @@ while cap.isOpened():
             i_pred = int(np.argmax(y_pred))
             conf = y_pred[i_pred]
 
-            if conf < 0.5:
+            if conf < 0.7:
                 continue
 
             action = actions[i_pred]
@@ -159,11 +160,25 @@ cap.release()
 cv2.destroyAllWindows()
 
 sentense = ""
-print("Predicted Actions:")
-for action in predicted_actions:
-    print(action)
-    sentense += action
+
+grouped_words = [predicted_actions[i:i+40] for i in range(0, len(predicted_actions), 40)]
+
+# 각 그룹에서 가장 많이 등장한 단어 추출하여 문장으로 합치기
+result_sentences = []
+for group in grouped_words:
+    quarter_index = len(group) // 3
+    quarter_word = group[quarter_index]
+    result_sentences.append(quarter_word)
+
+# 결과 문장 합치기
+result_sentence = " ".join(result_sentences)
+
+##print(result_sentence)
+
+##for action in predicted_actions:
+    ##print(action)
+    ##sentense += action
 
 
-system = "당신은 주어지는 문장에서 ?를 제거하고 적절히 띄어쓰기를 추가하고 같은 단어가 반복해서 나오면 중복을 제거하고 문맥이 매끄럽게 조사를 추가하여 문장을 매끄럽게 다듬어서 자연스러운 문장을 출력해주는 시스템입니다."
-chatgpt_response = call_chatgpt_api(sentense, system)
+# system = "당신은 주어지는 문장에서 ?를 제거하고 적절히 띄어쓰기를 추가하고 같은 단어가 반복해서 나오면 중복을 제거하고 한 번만 남겨두고 문맥이 매끄럽게 조사를 추가하여 문장을 매끄럽게 다듬어서 자연스러운 문장을 출력해주는 시스템입니다."
+# chatgpt_response = call_chatgpt_api(result_sentence, system)

@@ -1,8 +1,10 @@
-import requests
 import openai
+from dotenv import load_dotenv
+import os
 
 def call_chatgpt_api(sentense, system):
-    openai.api_key = "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"
+    load_dotenv()  # .env 파일을 로드합니다.
+    openai.api_key = os.getenv("OPENAI_API_KEY")  # API 키를 가져옵니다.
 
     completion = openai.ChatCompletion.create(
         model = "gpt-3.5-turbo",
@@ -17,33 +19,3 @@ def call_chatgpt_api(sentense, system):
     print(f'ChatGPT:{chat_response}')
     return chat_response;
 
-# def call_chatgpt_api(prompt):
-#     url = "https://api.openai.com/v1/chat/completions"
-#     secret_key = "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"
-#
-#     headers = {
-#         "Authorization": f"Bearer {secret_key}",
-#         "Content-Type": "application/json"
-#     }
-#
-#     data = {
-#         "messages": [
-#             {"role": "system", "content": "You are a helpful assistant."},
-#             {"role": "user", "content": prompt}
-#         ]
-#     }
-#
-#     response = requests.post(url, headers=headers, json=data)
-#
-#     if response.status_code == 200:
-#         chatgpt_response = response.json()
-#         assistant_reply = chatgpt_response["choices"][0]["message"]["content"]
-#         return assistant_reply
-#     else:
-#         print("Error:", response.status_code)
-#         return None
-
-# 사용 예시
-# prompt = "Translate the following English text to French: 'Hello, how are you?'"
-# assistant_reply = call_chatgpt_api(prompt)
-# print("Assistant's reply:", assistant_reply)

@@ -43,7 +43,7 @@ def calculateAngle(landmark1, landmark2, landmark3):
 def correctPose(current_angles1, word):
 
     # 현재 학습하고 있는 단어의 알맞는 동작의 각도들이 저장되어 있는 배열을 로드
-    angle_path = 'D:/캡스톤 연습/angles/' + word
+    angle_path = 'angles/' + word
     correct_angles_np = np.loadtxt(angle_path, dtype=int)
 
     # 로드한 배열을 리스트로 변환 

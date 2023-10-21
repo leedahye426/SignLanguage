@@ -4,7 +4,8 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { CardMedia } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material';
-import AiCamera from './AiCamera';
+// import AiCamera from './AiCamera';
+import MediaRecorder from "./MediaRecorder"
 import { Container } from '@mui/system';
 import Divider from '@mui/material/Divider';
 const translate = {
@@ -36,7 +37,9 @@ const Translate = () => {
       <Typography theme = {theme} variant="h6">{translate.posts}</Typography>
       <Container sx={{paddingTop : '20px'}}/>
       <Grid container flexItem sx={{justifyContent:'center'}}>
-        <Grid item ><AiCamera setSidebarTitle={setSidebarTitle} sidebarTitle={sidebarTitle} /></Grid>
+        <Grid item >
+            <MediaRecorder setSidebarTitle={setSidebarTitle} sidebarTitle={sidebarTitle} />
+        </Grid>
         <Divider orientation="vertical" flexItem sx={{margin:'0 30px 0'}}>
           {translate.word}
         </Divider>
